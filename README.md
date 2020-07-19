@@ -1,1 +1,2 @@
 # Titanic
+In every python project we need to first do certain steps to get clean and processed data so that we can implement our models. In this we first identify null values and clear them. Then we will convert our string value to integer because we can only perform training and testing on integer values. After all this we are left with clean data. We will also remove unwanted things. In this project, I have calculated the score of person alive with the help of given dataset. Download dataset from kaggle. 
