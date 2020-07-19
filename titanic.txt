@@ -1,0 +1,26 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+%matplotlib inline
+df = pd.read_csv("train.csv")
+df.head()
+inputs = df.drop('Survived',axis='columns')
+target = df['Survived']
+from sklearn.preprocessing import LabelEncoder
+le_Pclass = LabelEncoder()
+le_PassengerId = LabelEncoder()
+inputs['Pclass_n'] = le_Pclass.fit_transform(inputs['Pclass'])
+inputs['PassengerId_n'] = le_PassengerId.fit_transform(inputs['PassengerId'])
+inputs
+inputs.isnull()
+sns.heatmap(inputs.isnull(),yticklabels=False,cbar=False,cmap='viridis')
+inputs_n = inputs.drop(['Pclass','PassengerId','Embarked','Parch','SibSp','Sex','Name','Ticket','Fare','Age','Cabin'],axis='columns')
+inputs_n
+target
+from sklearn import tree
+model = tree.DecisionTreeClassifier()
+model.fit(inputs_n, target)
+model.score(inputs_n,target)
+model.predict([[10,1]])
+model.predict([[1,1]])
